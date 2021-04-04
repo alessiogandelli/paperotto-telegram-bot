@@ -15,7 +15,7 @@ bot.hears('hi', (ctx) => ctx.reply('Hey there'))
 bot.launch()
 
 function appizza(ctx){
-    exec('cd paperotto | java -Xmx2500M -Xms2500M -jar server.jar nogui', (err, stdout, stderr) => {
+    exec('cd paperotto', (err, stdout, stderr) => {
         if (err) {
           //some err occurred
           ctx.reply(err)
@@ -25,6 +25,18 @@ function appizza(ctx){
          ctx.reply(`stderr: ${stderr}`);
         }
       });
+
+      exec('java -Xmx2500M -Xms2500M -jar server.jar nogui', (err, stdout, stderr) => {
+        if (err) {
+          //some err occurred
+          ctx.reply(err)
+        } else {
+         // the *entire* stdout and stderr (buffered)
+         ctx.reply(`stdout: ${stdout}`);
+         ctx.reply(`stderr: ${stderr}`);
+        }
+      });
+
 }
 
 function ammazza(ctx){
