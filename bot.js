@@ -18,11 +18,11 @@ function appizza(ctx){
     exec('cd paperotto | java -Xmx2500M -Xms2500M -jar server.jar nogui', (err, stdout, stderr) => {
         if (err) {
           //some err occurred
-          ctx.retry(err)
+          ctx.reply(err)
         } else {
          // the *entire* stdout and stderr (buffered)
-         ctx.retry(`stdout: ${stdout}`);
-         ctx.retry(`stderr: ${stderr}`);
+         ctx.reply(`stdout: ${stdout}`);
+         ctx.reply(`stderr: ${stderr}`);
         }
       });
 }
