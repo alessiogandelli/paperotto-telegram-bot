@@ -1,6 +1,8 @@
 
 const { Telegraf } = require('telegraf')
-const { exec } = require('child_process');
+const shell = require('shelljs')
+
+
 
 const dotenv = require('dotenv');
 dotenv.config()
@@ -15,28 +17,8 @@ bot.hears('hi', (ctx) => ctx.reply('Hey there'))
 bot.launch()
 
 function appizza(ctx){
-    exec('cd paperotto', (err, stdout, stderr) => {
-        if (err) {
-          //some err occurred
-          ctx.reply(err)
-        } else {
-         // the *entire* stdout and stderr (buffered)
-         ctx.reply(`stdout: ${stdout}`);
-         ctx.reply(`stderr: ${stderr}`);
-        }
-      });
-
-      exec('java -Xmx2500M -Xms2500M -jar server.jar nogui', (err, stdout, stderr) => {
-        if (err) {
-          //some err occurred
-          ctx.reply(err)
-        } else {
-         // the *entire* stdout and stderr (buffered)
-         ctx.reply(`stdout: ${stdout}`);
-         ctx.reply(`stderr: ${stderr}`);
-        }
-      });
-
+    shell.exec('/home/pi/dev/craft.sh')
+    ctx.reply('forse ho appizzato')
 }
 
 function ammazza(ctx){
